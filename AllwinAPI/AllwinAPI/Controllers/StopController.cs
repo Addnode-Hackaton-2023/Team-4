@@ -50,7 +50,15 @@ namespace AllwinAPI.Controllers
         }
 
         [HttpPost]
-        public void RegisterWeigth(WeightDO weight)
+        [Route("RegisterWeight")]
+        public void RegisterWeight(WeightDO weight)
+        {
+            return;
+        }
+
+        [HttpPost]
+        [Route("RegisterDeviation")]
+        public void RegisteDeviation(DeviationDO deviation)
         {
             return;
         }

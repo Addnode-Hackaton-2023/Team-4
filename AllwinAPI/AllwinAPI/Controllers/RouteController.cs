@@ -61,11 +61,5 @@ namespace AllwinAPI.Controllers
             }
             return null;
         }
-
-        [HttpPost]
-        public void RegisterWeigth(WeightDO weight)
-        {
-            return;
-        }
     }
 }
