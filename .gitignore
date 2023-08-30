@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/AllwinAPI/.vs/AllwinAPI
+/AllwinAPI/.vs
+/AllwinAPI/AllwinAPI/obj
+/AllwinAPI/AllwinAPI/AllwinAPI.csproj.user
+/AllwinAPI/AllwinAPI/bin
+*.user

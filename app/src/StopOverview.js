@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import './App.css'
 import { getDetailedStopInfo } from './api'
 import React, { useEffect, useState } from "react";
+import Register from './register/register';
 
 function StopOverview() {
     const [stopDetails, setStopDetails] = useState([]);
@@ -18,6 +19,7 @@ function StopOverview() {
             <h3>Stop - {stopDetails.name}</h3>
             <p>{stopDetails.adress}</p>
             <p>Kontaktperson: {stopDetails.contactPerson} - {stopDetails.contactPhone}</p>
+            <Register/>
         </div>
     )
 }
