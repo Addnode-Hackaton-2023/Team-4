@@ -34,20 +34,20 @@ namespace AllwinAPI.Controllers
                 new StopListDO()
                 {
                     RouteId = routeId,
-                    StopId = 1,
-                    Name = "Ica nära",
-                    Adress = "Stockholmsvägen 1, 182 78 Stocksund",
-                    Latitude = 59.385100,
-                    Longitude =  18.045380,
-                },
-                new StopListDO()
-                {
-                    RouteId = routeId,
                     StopId = 2,
                     Name = "Coop",
                     Adress = "Stockholmsvägen 20, 181 50 Lidingö",
                     Latitude = 59.363430,
                     Longitude = 18.123540,
+                },
+                new StopListDO()
+                {
+                    RouteId = routeId,
+                    StopId = 1,
+                    Name = "Ica nära",
+                    Adress = "Stockholmsvägen 1, 182 78 Stocksund",
+                    Latitude = 59.385100,
+                    Longitude =  18.045380,
                 },
                 new StopListDO()
                 {

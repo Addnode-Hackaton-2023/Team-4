@@ -21,7 +21,8 @@ namespace AllwinAPI.Controllers
                     ETA = DateTime.Now.AddHours(2),
                     LatestLatitude = 59.385100,
                     LatestLongitude = 18.045380,
-                    LoadedWeight = 157
+                    LoadedWeight = 157,
+                    Stops = new List<int> { 1, 2, 3 },
                 }
             };
         }

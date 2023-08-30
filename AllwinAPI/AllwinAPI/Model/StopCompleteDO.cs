@@ -10,5 +10,6 @@
         public string Adress { get; set; } = string.Empty;
         public string ContactPerson { get; set; } = string.Empty;
         public string ContactPhone { get; set; } = string.Empty;
+        public List<string> ImageUrls { get; set; } = new List<string>();
     }
 }

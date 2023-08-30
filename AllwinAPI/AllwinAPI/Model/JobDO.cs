@@ -1,8 +1,9 @@
 ﻿namespace AllwinAPI.Model
 {
-    public class RouteInstanceDO
+    public class JobDO 
     {
-        public int RouteInstanceId { get; set; }
+        public int JobId  { get; set; }
+        public int RouteId { get; set; }
         public string RouteName { get; set; } = string.Empty;
         public DateTime ETA { get; set; }
         public double LatestLatitude { get; set; }
