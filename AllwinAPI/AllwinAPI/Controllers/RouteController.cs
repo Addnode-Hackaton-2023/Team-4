@@ -1,4 +1,5 @@
-﻿using AllwinAPI.Model;
+﻿using AllwinAPI.Db;
+using AllwinAPI.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AllwinAPI.Controllers
@@ -8,9 +9,17 @@ namespace AllwinAPI.Controllers
     public class RouteController : ControllerBase
     {
 
+        public readonly AllwinDbContext _dbContext;
+        public RouteController(AllwinDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         [HttpGet]
         public List<RouteDO> Get(int townId)
         {
+            //var a = _dbContext.Towns.Count();
+
             if (townId == 1) //"Stockholm"
             {
                 return new List<RouteDO>

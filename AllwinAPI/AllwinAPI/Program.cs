@@ -1,3 +1,6 @@
+using AllwinAPI.Db;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -14,6 +17,8 @@ builder.Services.AddCors(options =>
     });
 }
 );
+builder.Services.AddDbContext<AllwinDbContext>(
+        options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
 
 var app = builder.Build();
 
