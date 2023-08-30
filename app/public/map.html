@@ -68,7 +68,7 @@ https://developers.arcgis.com/documentation/mapping-apis-and-services/get-starte
                         symbol: {
                             type: "simple-marker",
                             color: getColor(i, stops.length - 1),
-                            size: "12px"
+                            size: "10px"
                         },
                         geometry: point
                     });
@@ -132,13 +132,38 @@ https://developers.arcgis.com/documentation/mapping-apis-and-services/get-starte
                 document.body.appendChild(newButton)
 
                 newButton.addEventListener('click', () => {
-                    alert("Start navigation");
-                    
+                    options = {
+                        enableHighAccuracy: false,
+                        timeout: 5000,
+                        maximumAge: 0,
+                    };
+                    navigator.geolocation.watchPosition(successCallback, errorCallback, options);
+                    directions.hidden = true;
                 });
-                directions.appendChild(newButton);
-
-                
+                directions.appendChild(newButton);              
             }
+
+            const successCallback = (position) => {
+                console.log(position);
+                var point = { //Create a point
+                    type: "point",
+                    longitude: position.coords.longitude,
+                    latitude: position.coords.latitude
+                };
+                const graphic = new Graphic({
+                    symbol: {
+                        type: "simple-marker",
+                        color: "blue",
+                        size: "15px"
+                    },
+                    geometry: point
+                });
+                view.graphics.add(graphic);
+            };
+
+            const errorCallback = (error) => {
+                console.log(error);
+            };
 
         });
     </script>
