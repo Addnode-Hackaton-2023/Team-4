@@ -1,6 +1,6 @@
 ﻿namespace AllwinAPI.Model
 {
-    public class CompleteStopDO : IStop
+    public class StopCompleteDO : IStop
     {
         public int StopId { get; set; }
         public int RouteId { get; set; }
