@@ -17,13 +17,13 @@ namespace AllwinAPI.Controllers
                 {
                     new RouteDO()
                     {
-                        routeId = 1,
-                        routeName = "Stockholm rutt 1"
+                        RouteId = 1,
+                        RouteName = "Stockholm rutt 1"
                     },
                     new RouteDO()
                     {
-                        routeId = 2,
-                        routeName = "Stockholm rutt 2"
+                        RouteId = 2,
+                        RouteName = "Stockholm rutt 2"
                     },
                 };
             }
@@ -33,13 +33,13 @@ namespace AllwinAPI.Controllers
                 {
                     new RouteDO()
                     {
-                        routeId = 3,
-                        routeName = "Göteborg rutt 1"
+                        RouteId = 3,
+                        RouteName = "Göteborg rutt 1"
                     },
                     new RouteDO()
                     {
-                        routeId = 4,
-                        routeName = "Göteborg rutt 2"
+                        RouteId = 4,
+                        RouteName = "Göteborg rutt 2"
                     },
                 };
             }
@@ -49,17 +49,18 @@ namespace AllwinAPI.Controllers
                 {
                     new RouteDO()
                     {
-                        routeId = 5,
-                        routeName = "Malmö rutt 1"
+                        RouteId = 5,
+                        RouteName = "Malmö rutt 1"
                     },
                     new RouteDO()
                     {
-                        routeId = 6,
-                        routeName = "Malmö rutt 2"
+                        RouteId = 6,
+                        RouteName = "Malmö rutt 2"
                     },
                 };
             }
-            return null;
+
+            return new List<RouteDO>();
         }
 
         [HttpPost]
