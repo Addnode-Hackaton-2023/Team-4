@@ -27,7 +27,7 @@ namespace AllwinAPI.Controllers
 
         [HttpPost]
         [Route("CompleteStop/{jobId}/stop/{stopId}")]
-        public void SetCompleteStop([FromRoute] int jobId, [FromRoute] int stopId, [FromQuery] int weight)
+        public void SetCompleteStop([FromRoute] int jobId, [FromRoute] int stopId, [FromBody] JobCompleteEventDO jobEvent)
         {
             return;
         }
