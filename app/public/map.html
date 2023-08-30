@@ -10,21 +10,21 @@ https://developers.arcgis.com/documentation/mapping-apis-and-services/get-starte
 
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>ArcGIS Maps SDK for JavaScript Tutorials: Find a route and directions</title>
-    <style>
-        html, body, #viewDiv {
-            padding: 0;
-            margin: 0;
-            height: 100%;
-            width: 100%;
-        }
-    </style>
-    <link rel="stylesheet" href="https://js.arcgis.com/4.27/esri/themes/light/main.css">
-    <script src="https://js.arcgis.com/4.27/"></script>
+ <meta charset="utf-8">
+ <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+ <title>ArcGIS Maps SDK for JavaScript Tutorials: Find a route and directions</title>
+ <style>
+  html, body, #viewDiv {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+  }
+ </style>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.27/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.27/"></script>
 
-    <script>
+  <script>
 
     require([
       "esri/config",
@@ -47,7 +47,7 @@ https://developers.arcgis.com/documentation/mapping-apis-and-services/get-starte
     const view = new MapView({
       container: "viewDiv",
       map: map,
-      center: [-118.24532,34.05398], //Longitude, latitude
+        center: [18.063240, 59.334591], //Longitude, latitude
       zoom: 12
     });
 
@@ -130,11 +130,12 @@ https://developers.arcgis.com/documentation/mapping-apis-and-services/get-starte
 
     }
 
-  });
-    </script>
+    });
+  StartGeoLocation
+  </script>
 
-</head>
-<body>
+  </head>
+    <body onload="StartGeoLocation();">
     <div id="viewDiv"></div>
 </body>
 </html>
