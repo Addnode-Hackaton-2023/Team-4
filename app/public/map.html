@@ -142,15 +142,18 @@ https://developers.arcgis.com/documentation/mapping-apis-and-services/get-starte
                 });
                 directions.appendChild(newButton);              
             }
-
+            var positionGraphic;
             const successCallback = (position) => {
+                if (positionGraphic != null) {
+                    view.graphics.remove(positionGraphic)
+                } 
                 console.log(position);
                 var point = { //Create a point
                     type: "point",
                     longitude: position.coords.longitude,
                     latitude: position.coords.latitude
                 };
-                const graphic = new Graphic({
+                positionGraphic = new Graphic({
                     symbol: {
                         type: "simple-marker",
                         color: "blue",
@@ -158,7 +161,9 @@ https://developers.arcgis.com/documentation/mapping-apis-and-services/get-starte
                     },
                     geometry: point
                 });
-                view.graphics.add(graphic);
+                view.graphics.add(positionGraphic);
+                
+                
             };
 
             const errorCallback = (error) => {
