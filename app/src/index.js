@@ -20,6 +20,10 @@ root.render(
                     path="/malmo"
                     element={<LocationRoutes location={'malmo'} />}
                 />
+                <Route
+                    path="/goteborg"
+                    element={<LocationRoutes location={'goteborg'} />}
+                />
             </Routes>
         </BrowserRouter>
     </React.StrictMode>
