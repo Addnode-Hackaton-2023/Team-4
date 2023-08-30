@@ -9,9 +9,9 @@ namespace AllwinAPI.Controllers
     {
 
         [HttpGet]
-        public List<RouteDO> Get(string town)
+        public List<RouteDO> Get(int townId)
         {
-            if (town == "Stockholm")
+            if (townId == 1) //"Stockholm"
             {
                 return new List<RouteDO>
                 {
@@ -27,7 +27,7 @@ namespace AllwinAPI.Controllers
                     },
                 };
             }
-            if (town == "Göteborg")
+            if (townId == 2) //"Göteborg"
             {
                 return new List<RouteDO>
                 {
@@ -43,7 +43,7 @@ namespace AllwinAPI.Controllers
                     },
                 };
             }
-            if (town == "Malmö")
+            if (townId == 3) //"Malmö"
             {
                 return new List<RouteDO>
                 {
@@ -60,6 +60,13 @@ namespace AllwinAPI.Controllers
                 };
             }
             return null;
+        }
+
+        [HttpPost]
+        [Route("StartRoute")]
+        public void StartRoute(int routeId)
+        {
+            return;
         }
     }
 }
