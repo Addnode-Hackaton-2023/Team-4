@@ -7,7 +7,7 @@ import LocationRoutes from './Routes'
 import reportWebVitals from './reportWebVitals'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
-const reload = () => window.location.reload();
+const reload = () => window.location.reload()
 root.render(
     <React.StrictMode>
         <BrowserRouter>
@@ -15,20 +15,17 @@ root.render(
                 <Route path="/" element={<App />} />
                 <Route
                     path="/stockholm"
-                    element={<LocationRoutes location={'stockholm'} />}
-                />
-                <Route
-                    path="/malmo"
-                    element={<LocationRoutes location={'malmo'} />}
+                    element={<LocationRoutes location={'1'} />}
                 />
                 <Route
                     path="/goteborg"
-                    element={<LocationRoutes location={'goteborg'} />}
+                    element={<LocationRoutes location={'2'} />}
                 />
                 <Route
-                    path="/map.html"
-                    onEnter={reload} />
+                    path="/malmo"
+                    element={<LocationRoutes location={'3'} />}
                 />
+                <Route path="/map.html" onEnter={reload} />
             </Routes>
         </BrowserRouter>
     </React.StrictMode>
