@@ -54,10 +54,10 @@ https://developers.arcgis.com/documentation/mapping-apis-and-services/get-starte
             });
             view.on("load", addControls());
             const routeUrl = "https://route-api.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World";
-
+            var stops;
             async function addGraphic() {
                 var response = await fetch('https://allwinapi20230830114644.azurewebsites.net/api/Stop/route/1');
-                var stops = await response.json(); //extract JSON from the http response
+                stops = await response.json(); //extract JSON from the http response
                 for (let i = 0; i < stops.length; i++) {
                     var point = { //Create a point
                         type: "point",
@@ -142,6 +142,16 @@ https://developers.arcgis.com/documentation/mapping-apis-and-services/get-starte
                 });
                 directions.appendChild(newButton);              
             }
+            let counter = 0;
+            let showedStore = false;
+            function showStoreInfo() {
+                counter++;
+                if (counter > 3 & showedStore == false) {
+                    showedStore = true;
+                    alert("You are closing up to a store!");
+                }
+            }
+
             var positionGraphic;
             const successCallback = (position) => {
                 if (positionGraphic != null) {
@@ -161,15 +171,18 @@ https://developers.arcgis.com/documentation/mapping-apis-and-services/get-starte
                     },
                     geometry: point
                 });
+                showStoreInfo()
                 view.graphics.add(positionGraphic);
-                
-                
             };
+
 
             const errorCallback = (error) => {
                 console.log(error);
             };
 
+            function getCurrentPoint() {
+                return stops[0];
+            }
         });
     </script>
 
