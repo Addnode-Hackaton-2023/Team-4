@@ -9,7 +9,8 @@ namespace AllwinAPI.Controllers
     public class StopController : ControllerBase
     {
         [HttpGet]
-        public StopCompleteDO GetStop(int stopId)
+        [Route("complete/{stopId}")]
+        public StopCompleteDO GetStop([FromRoute] int stopId)
         {
             return new StopCompleteDO()
             {
@@ -25,7 +26,8 @@ namespace AllwinAPI.Controllers
         }
 
         [HttpGet]
-        public List<StopListDO> GetAllStopsForRoute(int routeId)
+        [Route("route/{routeId}")]
+        public List<StopListDO> GetAllStopsForRoute([FromRoute] int routeId)
         {
             return new List<StopListDO>
             {
