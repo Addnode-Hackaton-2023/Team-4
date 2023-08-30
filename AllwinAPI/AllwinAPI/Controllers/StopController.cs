@@ -5,7 +5,7 @@ namespace AllwinAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RouteController : ControllerBase
+    public class StopController : ControllerBase
     {
 
         [HttpGet]
