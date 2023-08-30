@@ -2,7 +2,7 @@
 {
     public class RouteDO
     {
-        public int routeId { get; set; }
-        public string routeName { get; set; }
+        public int RouteId { get; set; }
+        public string RouteName { get; set; } = string.Empty;
     }
 }

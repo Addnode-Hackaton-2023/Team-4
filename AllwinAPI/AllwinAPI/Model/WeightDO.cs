@@ -2,7 +2,7 @@
 {
     public class WeightDO
     {
-        public int stopId { get; set; }
-        public double weightInKg { get; set; }
+        public int StopId { get; set; }
+        public double WeightInKg { get; set; }
     }
 }
