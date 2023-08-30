@@ -7,8 +7,9 @@ import LocationRoutes from './Routes'
 import Map1 from './Map1'
 import reportWebVitals from './reportWebVitals'
 import StopOverview from './StopOverview'
+import './config'
 
-const root = ReactDOM.createRoot(document.getElementById('root'))
+const root = ReactDOM.createRoot(document.getElementById('viewDiv'))
 const reload = () => window.location.reload()
 root.render(
     <React.StrictMode>
