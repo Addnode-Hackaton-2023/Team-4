@@ -1,12 +1,14 @@
+import { useParams } from 'react-router-dom';
 import './App.css'
-import { getRoute } from './api'
+import { getDetailedStopInfo } from './api'
 import React, { useEffect, useState } from "react";
 
-function StopOverview({ stopId }) {
+function StopOverview() {
     const [stopDetails, setStopDetails] = useState([]);
+    let {stopId} = useParams();
 
     useEffect(() => {
-      getRoute(stopId).then((data) => {
+      getDetailedStopInfo(stopId).then((data) => {
         setStopDetails(data?.data);
       });
     }, [stopId]);
