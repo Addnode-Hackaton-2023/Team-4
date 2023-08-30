@@ -15,10 +15,10 @@ namespace AllwinAPI.Controllers
             {
                 new StopDO()
                 {
-                    routeId = 1,
-                    stopId = 1,
-                    name = "Ica nära",
-                    adress = "Stockholmsvägen 1, 182 78 Stocksund",
+                    RouteId = 1,
+                    StopId = 1,
+                    Name = "Ica nära",
+                    Adress = "Stockholmsvägen 1, 182 78 Stocksund",
                     Latitude = 59.385100,
                     Longitude =  18.045380,
                     ContactPerson = "Person 1",
@@ -26,10 +26,10 @@ namespace AllwinAPI.Controllers
                 },
                 new StopDO()
                 {
-                    routeId = 1,
-                    stopId = 2,
-                    name = "Coop",
-                    adress = "Stockholmsvägen 20, 181 50 Lidingö",
+                    RouteId = 1,
+                    StopId = 2,
+                    Name = "Coop",
+                    Adress = "Stockholmsvägen 20, 181 50 Lidingö",
                     Latitude = 59.363430,
                     Longitude = 18.123540,
                     ContactPerson = "Person 2",
@@ -37,10 +37,10 @@ namespace AllwinAPI.Controllers
                 },
                 new StopDO()
                 {
-                    routeId = 1,
-                    stopId = 3,
-                    name = "Lidl",
-                    adress = "Enhagsvägen 24, 183 34 Täby",
+                    RouteId = 1,
+                    StopId = 3,
+                    Name = "Lidl",
+                    Adress = "Enhagsvägen 24, 183 34 Täby",
                     Latitude = 59.443940,
                     Longitude = 18.073490,
                     ContactPerson = "Person 3",

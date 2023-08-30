@@ -2,13 +2,13 @@
 {
     public class StopDO
     {
-        public int routeId { get; set; }
-        public int stopId { get; set; }
-        public string name { get; set; }
-        public string adress { get; set; }
+        public int RouteId { get; set; }
+        public int StopId { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Adress { get; set; } = string.Empty;
         public double Latitude { get; set; }
         public double Longitude { get; set; }
-        public string ContactPerson { get; set; }
-        public string ContactPhone { get; set; }
+        public string ContactPerson { get; set; } = string.Empty;
+        public string ContactPhone { get; set; } = string.Empty;
     }
 }
