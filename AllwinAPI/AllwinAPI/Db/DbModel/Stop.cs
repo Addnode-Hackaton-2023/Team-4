@@ -7,7 +7,7 @@
         public string Adress { get; set; } = String.Empty;
         public float TownId { get; set; }
         public float Latitude { get; set; }
-        public int Longitude { get; set; }
+        public float Longitude { get; set; }
         public string ContactPerson { get; set; } = String.Empty;
         public string ContactPhone { get; set; } = String.Empty;
         public Town Town { get; set; } = new Town();

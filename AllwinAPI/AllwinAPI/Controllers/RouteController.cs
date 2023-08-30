@@ -1,4 +1,5 @@
 ﻿using AllwinAPI.Db;
+using AllwinAPI.Db.DbModel;
 using AllwinAPI.Model;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,6 +29,42 @@ namespace AllwinAPI.Controllers
                 .ToList();
 
             return routes;
+        }
+
+        [HttpPost]
+        [Route("CreateNewRoute")]
+        /// Creates a route and returns the routeId
+        public int CreateNewRoute(CreateRouteDO createRoute)
+        {
+            var route = new AllwinAPI.Db.DbModel.Route()
+            {
+                RouteName = createRoute.RouteName
+            };
+
+            var number = 0;
+            foreach (var stop in createRoute.Stops)
+            {
+                route.Stops.Add(
+                    new StopInRoute()
+                    {
+                        Stop = new Stop()
+                        {
+                            Adress = stop.Adress,
+                            Name = stop.Name,
+                            Latitude = stop.Latitude,
+                            Longitude = stop.Longitude,
+                            TownId = createRoute.TownId,
+                            ContactPerson = "Person 1",
+                            ContactPhone = "07012345678"
+                        }
+                    });
+            }
+
+
+            _dbContext.Attach(route);
+            _dbContext.SaveChanges();
+
+            return route.RouteId;
         }
 
         [HttpPost]
