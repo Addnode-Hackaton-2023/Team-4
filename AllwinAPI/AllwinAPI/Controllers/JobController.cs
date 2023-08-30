@@ -1,4 +1,5 @@
 ﻿using AllwinAPI.Db;
+using AllwinAPI.Db.DbModel;
 using AllwinAPI.Model;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,8 +26,8 @@ namespace AllwinAPI.Controllers
                 ETA = DateTime.Now.AddHours(2),
                 LatestLatitude = 59.385100,
                 LatestLongitude = 18.045380,
-                LoadedWeight = 157,
-                Stops = new List<int> { 1, 2, 3 },
+                LoadedWeight = 157
+                //Stops = new List<int> { 1, 2, 3 },
             };
 
             return instance;
@@ -54,7 +55,18 @@ namespace AllwinAPI.Controllers
                     LatestLatitude = j.LatestLatitude,
                     LoadedWeight = j.JobStops.Sum(js => js.LoadedWeight.HasValue ? js.LoadedWeight.Value : 0),
                     RouteId = j.RouteId,
-                    Stops = j.JobStops.Select(js => js.StopId).ToList()
+                    Stops = j.JobStops.Select(js =>
+                    new StopCompleteDO()
+                    {
+                        StopId = js.Stop.StopId,
+                        Name = js.Stop.Name,
+                        Adress = js.Stop.Adress,
+                        Latitude = js.Stop.Latitude,
+                        Longitude = js.Stop.Longitude,
+                        ContactPerson = js.Stop.ContactPerson,
+                        ContactPhone = js.Stop.ContactPhone
+                    }).ToList(),
+                    TownName = j.Route.Town.TownName,
 
                 }).ToList();
 
