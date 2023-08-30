@@ -2,11 +2,11 @@ import './App.css'
 import { initialize } from './mapService.js'
 import React, { useEffect, useRef } from 'react'
 
-function Map1() {
+function Map1({ stops }) {
     const elementRef = useRef()
 
     useEffect((_) => {
-        initialize(elementRef.current)
+        initialize(elementRef.current, stops)
     }, [])
 
     return <div className="viewDiv" ref={elementRef}></div>
