@@ -8,30 +8,8 @@ function App() {
                 {/*  <img src={logo} className="App-logo" alt="logo" /> */}
                 <p>Holy Driver - Choose location:</p>
                 <Link to="/stockholm">Stockholm</Link>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Stockholm
-                </a>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Malmö
-                </a>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Göteborg
-                </a>
+                <Link to="/malmo">Malmö</Link>
+                <Link to="/goteborg">Göteborg</Link>
             </header>
         </div>
     )
