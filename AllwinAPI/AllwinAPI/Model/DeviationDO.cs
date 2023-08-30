@@ -2,7 +2,7 @@
 {
     public class DeviationDO
     {
-        public int stopId { get; set; }
-        public string comment { get; set; }
+        public int StopId { get; set; }
+        public string Comment { get; set; } = string.Empty;
     }
 }

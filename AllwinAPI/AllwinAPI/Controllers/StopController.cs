@@ -9,9 +9,9 @@ namespace AllwinAPI.Controllers
     public class StopController : ControllerBase
     {
         [HttpGet]
-        public CompleteStopDO GetStop(int stopId)
+        public StopCompleteDO GetStop(int stopId)
         {
-            return new CompleteStopDO()
+            return new StopCompleteDO()
             {
                 RouteId = 1,
                 StopId = stopId,
@@ -25,11 +25,11 @@ namespace AllwinAPI.Controllers
         }
 
         [HttpGet]
-        public List<ListStopDO> GetAllStopsForRoute(int routeId)
+        public List<StopListDO> GetAllStopsForRoute(int routeId)
         {
-            return new List<ListStopDO>
+            return new List<StopListDO>
             {
-                new ListStopDO()
+                new StopListDO()
                 {
                     RouteId = routeId,
                     StopId = 1,
@@ -38,7 +38,7 @@ namespace AllwinAPI.Controllers
                     Latitude = 59.385100,
                     Longitude =  18.045380,
                 },
-                new ListStopDO()
+                new StopListDO()
                 {
                     RouteId = routeId,
                     StopId = 2,
@@ -47,7 +47,7 @@ namespace AllwinAPI.Controllers
                     Latitude = 59.363430,
                     Longitude = 18.123540,
                 },
-                new ListStopDO()
+                new StopListDO()
                 {
                     RouteId = routeId,
                     StopId = 3,
