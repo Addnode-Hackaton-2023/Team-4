@@ -1,5 +1,7 @@
+import { Link } from 'react-router-dom'
 import logo from './logo.svg'
 import './App.css'
+import Routes from './Routes.js'
 
 function App() {
     return (
@@ -7,6 +9,7 @@ function App() {
             <header className="App-header">
                 {/*  <img src={logo} className="App-logo" alt="logo" /> */}
                 <p>Holy Driver - Choose location:</p>
+                <Link to="/stockholm">Stockholm</Link>
                 <a
                     className="App-link"
                     href="https://reactjs.org"

@@ -1,15 +1,26 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
 import App from './App'
+import LocationRoutes from './Routes'
 import reportWebVitals from './reportWebVitals'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
     <React.StrictMode>
         <BrowserRouter>
-            <App />
+            <Routes>
+                <Route path="/" element={<App />} />
+                <Route
+                    path="/stockholm"
+                    element={<LocationRoutes location={'stockholm'} />}
+                />
+                <Route
+                    path="/malmo"
+                    element={<LocationRoutes location={'malmo'} />}
+                />
+            </Routes>
         </BrowserRouter>
     </React.StrictMode>
 )
