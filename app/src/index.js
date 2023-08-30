@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
 import App from './App'
 import LocationRoutes from './Routes'
+import Map1 from './Map1'
 import reportWebVitals from './reportWebVitals'
 import StopOverview from './StopOverview'
 
@@ -27,6 +28,7 @@ root.render(
                     element={<LocationRoutes location={'3'} />}
                 />
                 <Route path="/stop/:stopId" element={<StopOverview />} />
+                <Route path="/map1" element={<Map1 />} />
                 <Route path="/map.html" onEnter={reload} />
             </Routes>
         </BrowserRouter>
