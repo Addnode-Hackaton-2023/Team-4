@@ -18,7 +18,7 @@ function Route({ routeId, routeName }) {
             <ul>
                 {stops.map((stop) => (
                     <li>
-                        {stop.name} - {stop.adress}
+                        <Link to={`/stop/${stop.stopId}`}>{stop.name} - {stop.adress}</Link>
                     </li>
                 ))}
             </ul>;
@@ -31,13 +31,7 @@ function Route({ routeId, routeName }) {
             <p>
                 Route - {routeName}:
             </p>
-            <ul>
-                {stops.map((stop) => (
-                    <li>
-                        <Link to={`/stop/${stop.stopId}`}>{stop.name} - {stop.adress}</Link>
-                    </li>
-                ))}
-            </ul>
+            {stopList}
         </div>
     )
 }
