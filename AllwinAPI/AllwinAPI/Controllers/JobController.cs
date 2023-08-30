@@ -2,6 +2,7 @@
 using AllwinAPI.Db.DbModel;
 using AllwinAPI.Model;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
 
 namespace AllwinAPI.Controllers
 {
@@ -19,6 +20,62 @@ namespace AllwinAPI.Controllers
         [Route("StartJob/route/{routeId}")]
         public JobDO StartJob([FromRoute] int routeId)
         {
+            var job = new JobDO();
+
+            var route = _dbContext.Routes.Where(x => x.RouteId == routeId).FirstOrDefault();
+            if (route == null) return null;
+
+            var dbJob = new Job()
+            {
+                RouteId = routeId,
+                ETA = DateTime.Now.AddHours(2),
+                LatestLatitude = null,
+                LatestLongitude = null,
+                Route = route,
+            };
+
+            var jobStops = new List<JobStop>();
+            route.Stops.ForEach(stop =>
+            {
+                jobStops.Add(new JobStop() { 
+                    StopOrder = stop.StopOrder, 
+                    Completed = false, 
+                    DeviationComment = string.Empty, 
+                    LatestLongitude = null, 
+                    LoadedWeight = 0, 
+                    LatestLatitude = 0, 
+                    StopId = stop.StopId
+                });
+            });
+            
+            dbJob.JobStops = jobStops;
+
+            _dbContext.Jobs.Add(dbJob);
+            _dbContext.SaveChanges();
+
+            job.LoadedWeight = 0;
+            job.JobId = dbJob.JobId;
+            job.RouteName = dbJob.Route.RouteName;
+            job.ETA = null;
+            job.LatestLatitude = null;
+            job.LatestLongitude = null;
+            job.JobStops = dbJob.JobStops.Select(stop =>
+            
+                new JobStopDO()
+                {
+                    StopId = stop.StopId,
+                    IsCompleted = false,
+                    JobId = stop.JobId
+                }
+            ).ToList();
+
+            return job;
+        }
+
+        [HttpPost]
+        [Route("CompleteStop/{jobId}/stop/{stopId}")]
+        public JobDO SetCompleteStop([FromRoute] int jobId, [FromRoute] int stopId, [FromBody] StopCompleteEventDO stopEvent)
+        {
             var instance = new JobDO()
             {
                 JobId = 1,
@@ -29,15 +86,7 @@ namespace AllwinAPI.Controllers
                 LoadedWeight = 157
                 //Stops = new List<int> { 1, 2, 3 },
             };
-
             return instance;
-        }
-
-        [HttpPost]
-        [Route("CompleteStop/{jobId}/stop/{stopId}")]
-        public void SetCompleteStop([FromRoute] int jobId, [FromRoute] int stopId, [FromBody] StopCompleteEventDO stopEvent)
-        {
-            return;
         }
 
         [HttpGet]
