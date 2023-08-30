@@ -2,7 +2,7 @@ name: Build and deploy .NET Core application to Web App AllwinAPI20230830114644
 on:
   push:
     branches:
-    - API
+    - main
 env:
   AZURE_WEBAPP_NAME: AllwinAPI20230830114644
   AZURE_WEBAPP_PACKAGE_PATH: .\publish
