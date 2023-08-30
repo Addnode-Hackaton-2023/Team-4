@@ -1,5 +1,4 @@
 import axios from "axios";
-import React from "react";
 
 const baseURL = "https://allwinapi20230830114644.azurewebsites.net/api/";
 
