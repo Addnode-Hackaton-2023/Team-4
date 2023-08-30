@@ -14,15 +14,15 @@ root.render(
                 <Route path="/" element={<App />} />
                 <Route
                     path="/stockholm"
-                    element={<LocationRoutes location={'stockholm'} />}
-                />
-                <Route
-                    path="/malmo"
-                    element={<LocationRoutes location={'malmo'} />}
+                    element={<LocationRoutes location={'1'} />}
                 />
                 <Route
                     path="/goteborg"
-                    element={<LocationRoutes location={'goteborg'} />}
+                    element={<LocationRoutes location={'2'} />}
+                />
+                <Route
+                    path="/malmo"
+                    element={<LocationRoutes location={'3'} />}
                 />
             </Routes>
         </BrowserRouter>

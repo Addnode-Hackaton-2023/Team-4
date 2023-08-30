@@ -1,18 +1,34 @@
+import React, { useEffect, useState } from "react";
 import './App.css'
 import Route from './Route'
+import { getRoutes } from './api'
 
 function Routes({ location }) {
-    const routes = ['Route1', 'Route2', 'Route3', 'Route4']
+    const [routes, setRoutes] = useState([]);
+    
+    useEffect(() => {
+      getRoutes(location).then((data) => {
+        setRoutes(data?.data);
+      });
+    }, [location]);
+
+    let routeList;
+    if (routes.length > 0) {
+        routeList = <div><p>Choose route:</p>
+        <ul>
+            {routes.map((route) => (
+                <Route routeName={route.routeName} routeId={route.routeId} />
+            ))}
+        </ul>
+        </div>;
+    } else {
+        routeList = <p>No routes available</p>;
+    }
 
     return (
         <div className="App">
             <header className="App-header">
-                <p>Choose route:</p>
-                <ul>
-                    {routes.map((route) => (
-                        <Route routeName={route} />
-                    ))}
-                </ul>
+                {routeList}
             </header>
         </div>
     )
