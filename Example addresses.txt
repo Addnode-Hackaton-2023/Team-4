@@ -1,8 +1,8 @@
-Stockholmsvägen 1, 182 78 Stocksund
-Stockholmsvägen 20, 181 50 Lidingö
-Enhagsvägen 24, 183 34 Täby
-Sankt Eriksgatan 113, 113 43 Stockholm
-Bibliotekstorget 2A, 171 45 Solna
+Stockholmsvägen 1, 182 78 Stocksund 59.385100, 18.045380
+Stockholmsvägen 20, 181 50 Lidingö 59.363430, 18.123540
+Enhagsvägen 24, 183 34 Täby 59.443940, 18.073490
+Sankt Eriksgatan 113, 113 43 Stockholm, 59.346390, 18.039720
+Bibliotekstorget 2A, 171 45 Solna 59.359510, 18.001260
 Saluvägen 10, 187 66 Täby
 Sveavägen 59, 113 59 STOCKHOLM
 Sibyllegatan 8, 114 42 Stockholm
