@@ -8,6 +8,12 @@ export function getRoute(routeId){
     return axios.get(baseURL + endpoint);
 }
 
+export function getDetailedStopInfo(stopId){
+    const endpoint = 'Stop/complete/' + stopId;
+
+    return axios.get(baseURL + endpoint);
+}
+
 export function getRoutes(townName) {
     const endpoint = 'Route?townId=' + townName;
 

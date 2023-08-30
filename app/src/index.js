@@ -6,6 +6,7 @@ import App from './App'
 import LocationRoutes from './Routes'
 import Map1 from './Map1'
 import reportWebVitals from './reportWebVitals'
+import StopOverview from './StopOverview'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 const reload = () => window.location.reload()
@@ -26,6 +27,7 @@ root.render(
                     path="/malmo"
                     element={<LocationRoutes location={'3'} />}
                 />
+                <Route path="/stop/:stopId" element={<StopOverview />} />
                 <Route path="/map1" element={<Map1 />} />
                 <Route path="/map.html" onEnter={reload} />
             </Routes>
