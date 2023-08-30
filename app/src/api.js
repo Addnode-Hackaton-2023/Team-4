@@ -3,7 +3,7 @@ import axios from "axios";
 const baseURL = "https://allwinapi20230830114644.azurewebsites.net/api/";
 
 export function getRoute(routeId){
-    const endpoint = 'Stop?routeId=' + routeId;
+    const endpoint = 'Stop/route/' + routeId;
 
     return axios.get(baseURL + endpoint);
 }
