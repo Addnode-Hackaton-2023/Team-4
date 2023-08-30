@@ -41,38 +41,24 @@ namespace AllwinAPI.Controllers
 
         [HttpGet]
         [Route("GetActiveJobs")]
-        public List<RouteInstanceDO> GetActiveJobs()
+        public List<JobDO> GetActiveJobs()
         {
-            //var stops = _dbContext.Stops
-            //   .Where(s => s.Routes.Any(r => r.RouteId == routeId))
-            //   .Select(
-            //       s => new StopListDO()
-            //       {
-            //           StopId = s.StopId,
-            //           RouteId = routeId,
-            //           Name = s.Name,
-            //           Adress = s.Adress,
-            //           Latitude = s.Latitude,
-            //           Longitude = s.Longitude
-            //       })
-            //   .ToList();
-
-            //var jobs = _dbContext.Jobs
-            //    .Where(j => j.JobStops.Any(js => !js.Completed))
-
-            return new List<RouteInstanceDO>()
-            {
-                new RouteInstanceDO()
+            var jobs = _dbContext.Jobs
+                .Where(j => j.JobStops.Any(js => !js.Completed))
+                .Select(j => new JobDO()
                 {
-                    RouteInstanceId = 1,
-                    RouteName = "Stockholm rutt 1",
-                    ETA = DateTime.Now.AddHours(2),
-                    LatestLatitude = 59.385100,
-                    LatestLongitude = 18.045380,
-                    LoadedWeight = 157,
-                    Stops = new List<int> { 1, 2, 3 },
-                }
-            };
+                    JobId = j.JobId,
+                    RouteName = j.Route.RouteName,
+                    ETA = j.ETA,
+                    LatestLongitude = j.LatestLongitude,
+                    LatestLatitude = j.LatestLatitude,
+                    LoadedWeight = j.JobStops.Sum(js => js.LoadedWeight.HasValue ? js.LoadedWeight.Value : 0),
+                    RouteId = j.RouteId,
+                    Stops = j.JobStops.Select(js => js.StopId).ToList()
+
+                }).ToList();
+
+            return jobs;
         }
     }
 }

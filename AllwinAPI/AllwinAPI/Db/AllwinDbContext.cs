@@ -54,20 +54,20 @@ namespace AllwinAPI.Db
                 entity.HasOne(s => s.Stop).WithMany(r => r.Routes);
             });
 
-            modelBuilder.Entity<Job>(entity =>
-            {
-                entity.HasKey(e => e.JobId);
-                entity.ToTable("Job");
-                entity.HasOne(s => s.Route).WithMany(r => r.Jobs);
-            });
+            //modelBuilder.Entity<Job>(entity =>
+            //{
+            //    entity.HasKey(e => e.JobId);
+            //    entity.ToTable("Job");
+            //    entity.HasOne(s => s.Route).WithMany(r => r.Jobs);
+            //});
 
-            modelBuilder.Entity<JobStop>(entity =>
-            {
-                entity.HasKey(e => e.JobId);
-                entity.ToTable("Job");
-                entity.HasOne(s => s.Stop).WithMany(r => r.JobStops);
-                entity.HasOne(s => s.Job).WithMany(r => r.JobStops);
-            });
+            //modelBuilder.Entity<JobStop>(entity =>
+            //{
+            //    entity.HasKey(e => e.JobId);
+            //    entity.ToTable("Job");
+            //    entity.HasOne(s => s.Stop).WithMany(r => r.JobStops);
+            //    entity.HasOne(s => s.Job).WithMany(r => r.JobStops);
+            //});
 
             OnModelCreatingPartial(modelBuilder);
         }
