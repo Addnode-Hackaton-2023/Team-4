@@ -8,12 +8,12 @@ namespace AllwinAPI.Controllers
     public class JobController
     {
         [HttpPost]
-        [Route("StartJob/{routeId}")]
-        public RouteInstanceDO StartRoute([FromRoute] int routeId)
+        [Route("StartJob/route/{routeId}")]
+        public JobDO StartJob([FromRoute] int routeId)
         {
-            var instance = new RouteInstanceDO()
+            var instance = new JobDO()
             {
-                RouteInstanceId = 1,
+                JobId = 1,
                 RouteName = "Stockholm rutt 1",
                 ETA = DateTime.Now.AddHours(2),
                 LatestLatitude = 59.385100,
@@ -27,7 +27,7 @@ namespace AllwinAPI.Controllers
 
         [HttpPost]
         [Route("CompleteStop/{jobId}/stop/{stopId}")]
-        public void SetCompleteStop([FromRoute] int jobId, [FromRoute] int stopId, [FromBody] JobCompleteEventDO jobEvent)
+        public void SetCompleteStop([FromRoute] int jobId, [FromRoute] int stopId, [FromBody] StopCompleteEventDO stopEvent)
         {
             return;
         }
