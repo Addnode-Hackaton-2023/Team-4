@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AllwinAPI.Model;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AllwinAPI.Controllers
 {
@@ -8,9 +9,29 @@ namespace AllwinAPI.Controllers
     {
 
         [HttpGet]
-        public void GetAllStopsForRoute(int routeId)
+        public List<StopDO> GetAllStopsForRoute(int routeId)
         {
-            return;
+            return new List<StopDO>
+            {
+                new StopDO()
+                {
+                    routeId = 1,
+                    stopId = 1,
+                    name = "Ica nära"
+                },
+                new StopDO()
+                {
+                    routeId = 1,
+                    stopId = 2,
+                    name = "Coop"
+                },
+                new StopDO()
+                {
+                    routeId = 1,
+                    stopId = 3,
+                    name = "Lidl"
+                }
+            };
         }
 
         [HttpPost]

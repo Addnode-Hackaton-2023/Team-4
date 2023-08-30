@@ -1,8 +1,9 @@
-﻿namespace AllwinAPI.Controllers
+﻿namespace AllwinAPI.Model
 {
-    public class WeightDO
+    public class StopDO
     {
         public int routeId;
         public int stopId;
+        public string name;
     }
 }
