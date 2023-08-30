@@ -9,8 +9,8 @@ namespace AllwinAPI.Controllers
     {
 
         [HttpGet]
-        [Route("GetActiveRouteInstancess")]
-        public List<RouteInstanceDO> GetActiveRouteInstancess()
+        [Route("GetActiveRouteInstances")]
+        public List<RouteInstanceDO> GetActiveRouteInstances()
         {
             return new List<RouteInstanceDO>()
             {
