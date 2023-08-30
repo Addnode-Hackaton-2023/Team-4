@@ -8,7 +8,6 @@ namespace AllwinAPI.Controllers
     [ApiController]
     public class RouteController : ControllerBase
     {
-
         public readonly AllwinDbContext _dbContext;
         public RouteController(AllwinDbContext dbContext)
         {
@@ -18,58 +17,17 @@ namespace AllwinAPI.Controllers
         [HttpGet]
         public List<RouteDO> Get(int townId)
         {
-            //var a = _dbContext.Towns.Count();
+            var routes = _dbContext.Routes
+                .Where(r => r.TownId == townId)
+                .Select(
+                    r => new RouteDO()
+                    {
+                        RouteId = r.RouteId,
+                        RouteName = r.RouteName
+                    })
+                .ToList();
 
-            if (townId == 1) //"Stockholm"
-            {
-                return new List<RouteDO>
-                {
-                    new RouteDO()
-                    {
-                        RouteId = 1,
-                        RouteName = "Stockholm rutt 1"
-                    },
-                    new RouteDO()
-                    {
-                        RouteId = 2,
-                        RouteName = "Stockholm rutt 2"
-                    },
-                };
-            }
-            if (townId == 2) //"Göteborg"
-            {
-                return new List<RouteDO>
-                {
-                    new RouteDO()
-                    {
-                        RouteId = 3,
-                        RouteName = "Göteborg rutt 1"
-                    },
-                    new RouteDO()
-                    {
-                        RouteId = 4,
-                        RouteName = "Göteborg rutt 2"
-                    },
-                };
-            }
-            if (townId == 3) //"Malmö"
-            {
-                return new List<RouteDO>
-                {
-                    new RouteDO()
-                    {
-                        RouteId = 5,
-                        RouteName = "Malmö rutt 1"
-                    },
-                    new RouteDO()
-                    {
-                        RouteId = 6,
-                        RouteName = "Malmö rutt 2"
-                    },
-                };
-            }
-
-            return new List<RouteDO>();
+            return routes;
         }
 
         [HttpPost]

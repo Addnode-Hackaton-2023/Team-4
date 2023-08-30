@@ -19,6 +19,10 @@ namespace AllwinAPI.Db
 
         public virtual DbSet<AllwinAPI.Db.DbModel.Route> Routes { get; set; }
         public virtual DbSet<Town> Towns { get; set; }
+        public virtual DbSet<Stop> Stops { get; set; }
+        public virtual DbSet<StopInRoute> StopInRoutes { get; set; }
+        public virtual DbSet<Job> Jobs { get; set; }
+        public virtual DbSet<JobStop> JobStops { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -36,28 +40,34 @@ namespace AllwinAPI.Db
                 entity.ToTable("Town");
                 entity.HasMany(t => t.Routes).WithOne(r => r.Town);
             });
-            //modelBuilder.Entity<FsdAktivitet>(entity =>
-            //{
-            //    entity.HasKey(e => e.AktivitetId);
-            //    entity.ToTable("FsdAktivitet");
-            //});
-            //modelBuilder.Entity<FsdFil>(entity =>
-            //{
-            //    entity.HasKey(e => e.FilId);
-            //    entity.ToTable("FsdFil");
-            //    entity.Property(e => e.Storlek)
-            //      .HasColumnType("decimal(18, 0)");
-            //});
-            //modelBuilder.Entity<FbEventMediaList>(entity =>
-            //{
-            //    entity.ToView("FbEventMediaList");
-            //    entity.HasNoKey();
-            //});
-            //modelBuilder.Entity<FbEventHanterat>(entity =>
-            //{
-            //    entity.HasKey(e => new { e.EventId, e.SystemNamn });
-            //    entity.ToTable("FbEventHanterat");
-            //});
+            modelBuilder.Entity<Stop>(entity =>
+            {
+                entity.HasKey(e => e.StopId);
+                entity.ToTable("Stop");
+                entity.HasOne(s => s.Town).WithMany(t => t.Stops);
+            });
+            modelBuilder.Entity<StopInRoute>(entity =>
+            {
+                entity.HasKey(e => new { e.StopId, e.RouteId });
+                entity.ToTable("StopInRoute");
+                entity.HasOne(s => s.Route).WithMany(r => r.Stops);
+                entity.HasOne(s => s.Stop).WithMany(r => r.Routes);
+            });
+
+            modelBuilder.Entity<Job>(entity =>
+            {
+                entity.HasKey(e => e.JobId);
+                entity.ToTable("Job");
+                entity.HasOne(s => s.Route).WithMany(r => r.Jobs);
+            });
+
+            modelBuilder.Entity<JobStop>(entity =>
+            {
+                entity.HasKey(e => e.JobId);
+                entity.ToTable("Job");
+                entity.HasOne(s => s.Stop).WithMany(r => r.JobStops);
+                entity.HasOne(s => s.Job).WithMany(r => r.JobStops);
+            });
 
             OnModelCreatingPartial(modelBuilder);
         }

@@ -9,6 +9,7 @@ namespace AllwinAPI.Controllers
     {
 
         [HttpGet]
+        [Obsolete("Use Job\\GetActiveJobs instead this will be removed soon")]
         [Route("GetActiveRouteInstances")]
         public List<RouteInstanceDO> GetActiveRouteInstances()
         {
