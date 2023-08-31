@@ -4,7 +4,7 @@
     {
         public int TownId { get; set; }
         public string RouteName { get; set; } = string.Empty;
-        public List<StopListDO> Stops { get; set; } = new List<StopListDO>();
+        public List<CreateStopDO> Stops { get; set; } = new List<CreateStopDO>();
 
     }
 }

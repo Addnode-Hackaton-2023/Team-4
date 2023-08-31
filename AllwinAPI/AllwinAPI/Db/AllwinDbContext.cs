@@ -38,13 +38,13 @@ namespace AllwinAPI.Db
             {
                 entity.HasKey(e => e.TownId);
                 entity.ToTable("Town");
-                entity.HasMany(t => t.Routes).WithOne(r => r.Town);
+                //entity.HasMany(t => t.Routes).WithOne(r => r.Town);
+
             });
             modelBuilder.Entity<Stop>(entity =>
             {
                 entity.HasKey(e => e.StopId);
                 entity.ToTable("Stop");
-                entity.HasOne(s => s.Town).WithMany(t => t.Stops);
                 entity.Property("Latitude").HasColumnType("float");
                 entity.Property("Longitude").HasColumnType("float");
             });

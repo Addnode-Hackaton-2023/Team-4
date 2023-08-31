@@ -4,8 +4,8 @@
     {
         public int TownId { get; set; }
         public string TownName { get; set; } = String.Empty;
-        public List<Route> Routes { get; set; } = new List<Route>();
-        public List<Stop> Stops { get; set; } = new List<Stop>();
+        //public List<Route> Routes { get; set; } = new List<Route>();
+        //public List<Stop> Stops { get; set; } = new List<Stop>();
 
     }
 }
