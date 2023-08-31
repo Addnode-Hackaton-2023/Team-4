@@ -2,7 +2,7 @@
 using AllwinAPI.Db.DbModel;
 using AllwinAPI.Model;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace AllwinAPI.Controllers
 {
@@ -22,12 +22,15 @@ namespace AllwinAPI.Controllers
         {
             var job = new JobDO();
 
-            var route = _dbContext.Routes.Where(x => x.RouteId == routeId).FirstOrDefault();
-            
+            var route = _dbContext.Routes.Include(a => a.Stops).Where(x => x.RouteId == routeId).FirstOrDefault();
+
             if (route == null) return null;
+
+            var maxJobId = _dbContext.Jobs.Any() ? _dbContext.Jobs.Max(r => r.JobId) : 0;
 
             var dbJob = new Job()
             {
+                JobId = maxJobId + 1,
                 RouteId = routeId,
                 ETA = DateTime.Now.AddHours(2),
                 LatestLatitude = null,
@@ -36,17 +39,22 @@ namespace AllwinAPI.Controllers
             };
 
             var jobStops = new List<JobStop>();
+            var jobStopNumber = 0;
             route.Stops.ForEach(stop =>
-            {
-                jobStops.Add(new JobStop() { 
-                    StopOrder = stop.StopOrder, 
-                    Completed = false, 
-                    DeviationComment = string.Empty, 
-                    LoadedWeight = 0,
-                    StopId = stop.StopId,
+                {
+                    var stopdefintion = _dbContext.Stops.Where(s => s.StopId == stop.StopId).Single();
+                    jobStops.Add(new JobStop()
+                    {
+                        JobStopId = ++jobStopNumber,
+                        StopOrder = stop.StopOrder,
+                        Completed = false,
+                        DeviationComment = string.Empty,
+                        LoadedWeight = 0,
+                        StopId = stop.StopId,
+                        Stop = stopdefintion,
+                    });
                 });
-            });
-            
+
             dbJob.JobStops = jobStops;
 
             _dbContext.Jobs.Add(dbJob);
@@ -70,7 +78,7 @@ namespace AllwinAPI.Controllers
                     ContactPerson = stop.Stop.ContactPerson,
                     ContactPhone = stop.Stop.ContactPhone
                 }
-            ).ToList();
+            ).OrderBy(j => j.StopOrder).ToList();
 
             return job;
         }
@@ -86,7 +94,7 @@ namespace AllwinAPI.Controllers
 
             if (stop == null) return null;
 
-            if(stopEvent.Weight > 0)
+            if (stopEvent.Weight > 0)
             {
                 stop.LoadedWeight = stopEvent.Weight;
                 stop.Completed = true;
@@ -123,7 +131,7 @@ namespace AllwinAPI.Controllers
                                    ContactPerson = js.Stop.ContactPerson,
                                    ContactPhone = js.Stop.ContactPhone,
 
-                               }).ToList(),
+                               }).OrderBy(j => j.StopOrder).ToList(),
                 TownName = job.Route.Town.TownName,
 
             };
@@ -155,7 +163,7 @@ namespace AllwinAPI.Controllers
                                        LoadedWeight = js.LoadedWeight,
                                        ContactPerson = js.Stop.ContactPerson,
                                        ContactPhone = js.Stop.ContactPhone,
-                                      
+
                                    }).ToList(),
                     TownName = j.Route.Town.TownName,
 
