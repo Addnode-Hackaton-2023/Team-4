@@ -145,6 +145,15 @@ namespace AllwinAPI.Controllers
         }
 
         [HttpGet]
+        [Route("IsActiveJob")]
+        public bool IsActiveJob(int jobId)
+        {
+            var active = _dbContext.Jobs
+                .Any(j => j.JobId == jobId && j.JobStops.Any(js => !js.Completed));
+            return active;
+        }
+
+        [HttpGet]
         [Route("GetActiveJobs")]
         public List<JobDO> GetActiveJobs()
         {

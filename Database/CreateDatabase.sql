@@ -103,8 +103,8 @@ values(1,1,1),
 (2,2,9),
 (1,2,10)
 
-
-
+drop table JobStop
+drop table Job
 
 create table Job 
 (
@@ -124,8 +124,11 @@ create table JobStop
 	StopId int not null,
 	LoadedWeight float null,
 	DeviationComment nvarchar(1000) null,
-	Completed bit not null DEFAULT 0
+	Completed bit not null DEFAULT 0,
+	StopOrder int not null,
 	PRIMARY KEY (JobStopId),
 	FOREIGN KEY (JobId) REFERENCES Job(JobId),
 	FOREIGN KEY (StopId) REFERENCES Stop(StopId)
 )
+
+select * from Stop
