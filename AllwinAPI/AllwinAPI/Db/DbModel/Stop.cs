@@ -5,7 +5,7 @@
         public int StopId { get; set; }
         public string Name { get; set; } = String.Empty;
         public string Adress { get; set; } = String.Empty;
-        public float TownId { get; set; }
+        public int TownId { get; set; }
         public float Latitude { get; set; }
         public float Longitude { get; set; }
         public string ContactPerson { get; set; } = String.Empty;
