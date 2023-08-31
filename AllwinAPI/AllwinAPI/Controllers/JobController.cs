@@ -87,22 +87,28 @@ namespace AllwinAPI.Controllers
         [Route("CompleteStop/{jobId}/stop/{stopId}")]
         public JobDO SetCompleteStop([FromRoute] int jobId, [FromRoute] int stopId, [FromBody] StopCompleteEventDO stopEvent)
         {
-            var job = _dbContext.Jobs.Where(j => j.JobId == jobId).FirstOrDefault();
+            var job = _dbContext.Jobs.Include(j => j.JobStops).Where(j => j.JobId == jobId).FirstOrDefault();
             if (job == null) return null;
 
-            var stop = job.JobStops.Where(js => js.StopId == stopId).FirstOrDefault();
+            var jobStop = job.JobStops.Where(js => js.StopId == stopId).FirstOrDefault();
 
-            if (stop == null) return null;
+            if (jobStop == null) return null;
+
+            var stop = _dbContext.Stops.Single(s => s.StopId == jobStop.StopId);
+
+            job.LatestLatitude = stop.Latitude;
+            job.LatestLongitude = stop.Longitude;
+            job.ETA = DateTime.Now.AddMinutes(job.JobStops.Count(js => !js.Completed) * 15);
 
             if (stopEvent.Weight > 0)
             {
-                stop.LoadedWeight = stopEvent.Weight;
-                stop.Completed = true;
+                jobStop.LoadedWeight = stopEvent.Weight;
+                jobStop.Completed = true;
             }
             else if (!string.IsNullOrEmpty(stopEvent.DeviationComment))
             {
-                stop.DeviationComment = stopEvent.DeviationComment;
-                stop.Completed = true;
+                jobStop.DeviationComment = stopEvent.DeviationComment;
+                jobStop.Completed = true;
             }
             else
             {
