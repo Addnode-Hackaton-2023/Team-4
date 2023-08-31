@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import './Mymap.css'
 
 import Map from '@arcgis/core/Map.js'
@@ -151,6 +151,15 @@ const useCreateMap = (mapRef, routeId) => {
 
 function Mymap() {
     let {routeId} = useParams();
+    let location = useLocation();
+
+    React.useEffect(() => {
+        console.log(location);
+        if (location.pathname.startsWith("/route/")) {
+            document.getElementById("rootOuterContainer").className = "";
+        }
+      }, [location]);
+
     const elementRef = useRef(null);
     useCreateMap(elementRef, routeId);
 
