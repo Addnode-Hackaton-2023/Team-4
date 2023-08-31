@@ -80,17 +80,54 @@ namespace AllwinAPI.Controllers
         [Route("CompleteStop/{jobId}/stop/{stopId}")]
         public JobDO SetCompleteStop([FromRoute] int jobId, [FromRoute] int stopId, [FromBody] StopCompleteEventDO stopEvent)
         {
-            var instance = new JobDO()
+            var job = _dbContext.Jobs.Where(j => j.JobId == jobId).FirstOrDefault();
+            if (job == null) return null;
+
+            var stop = job.JobStops.Where(js => js.StopId == stopId).FirstOrDefault();
+
+            if (stop == null) return null;
+
+            if(stopEvent.Weight > 0)
             {
-                JobId = 1,
-                RouteName = "Stockholm rutt 1",
-                ETA = DateTime.Now.AddHours(2),
-                LatestLatitude = 59.385100,
-                LatestLongitude = 18.045380,
-                LoadedWeight = 157
-                //Stops = new List<int> { 1, 2, 3 },
+                stop.LoadedWeight = stopEvent.Weight;
+                stop.Completed = true;
+            }
+            else if (!string.IsNullOrEmpty(stopEvent.DeviationComment))
+            {
+                stop.DeviationComment = stopEvent.DeviationComment;
+                stop.Completed = true;
+            }
+            else
+            {
+                return null;
+            }
+
+            _dbContext.SaveChanges();
+
+            var jobDo = new JobDO()
+            {
+                JobId = job.JobId,
+                RouteName = job.Route.RouteName,
+                ETA = job.ETA,
+                LatestLongitude = job.LatestLongitude,
+                LatestLatitude = job.LatestLatitude,
+                LoadedWeight = job.JobStops.Sum(js => js.LoadedWeight.HasValue ? js.LoadedWeight.Value : 0),
+                RouteId = job.RouteId,
+                CurrentJobStops = job.JobStops.Select(js =>
+                               new JobStopDO()
+                               {
+                                   StopId = js.StopId,
+                                   IsCompleted = js.Completed,
+                                   JobId = js.JobId,
+                                   DeviationComment = js.DeviationComment,
+                                   ContactPerson = js.Stop.ContactPerson,
+                                   ContactPhone = js.Stop.ContactPhone,
+
+                               }).ToList(),
+                TownName = job.Route.Town.TownName,
+
             };
-            return instance;
+            return jobDo;
         }
 
         [HttpGet]
