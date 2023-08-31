@@ -1,5 +1,4 @@
 import './App.css'
-import Map1 from './Map1'
 import { getRoute } from './api'
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
@@ -32,12 +31,8 @@ function Route({ routeId, routeName }) {
     }
     return (
         <div>
-            <p>Route - {routeName}:</p>
+            <p><Link to={`/route/${routeId}`}>Route - {routeName}:</Link></p>
             {stopList}
-            {/*ReactDOM.render(
-                <Map1 stops={stops} />,
-                document.body.appendChild(document.getElementById('viewDiv'))
-            )*/}
         </div>
     )
 }

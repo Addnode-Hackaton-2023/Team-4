@@ -12,7 +12,6 @@ function App() {
                 <Link to="/goteborg">Göteborg</Link>
                 <Link to="/mymap">hej</Link>
                 <Link to="/map.html">Map</Link>
-                <Link to="/map1">Map1</Link>
             </header>
         </div>
     )
