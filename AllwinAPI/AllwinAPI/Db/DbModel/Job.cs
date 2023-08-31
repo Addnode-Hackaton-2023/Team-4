@@ -9,6 +9,5 @@
         public double? LatestLongitude { get; set; }
         public Route Route { get; set; } = new Route();
         public List<JobStop> JobStops { get; set; } = new List<JobStop>();
-
     }
 }

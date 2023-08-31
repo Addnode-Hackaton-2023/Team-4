@@ -36,32 +36,45 @@ namespace AllwinAPI.Controllers
         /// Creates a route and returns the routeId
         public int CreateNewRoute(CreateRouteDO createRoute)
         {
+            var town = _dbContext.Towns.Single(t => t.TownId == createRoute.TownId);
+
+            var maxRouteId = _dbContext.Routes.Max(r => r.RouteId);
+
             var route = new AllwinAPI.Db.DbModel.Route()
             {
-                RouteName = createRoute.RouteName
+                RouteId = maxRouteId + 1,
+                RouteName = createRoute.RouteName,
+                TownId = createRoute.TownId,
+                Town = town
             };
 
+            var maxStopId = _dbContext.Stops.Max(r => r.StopId);
             var number = 0;
             foreach (var stop in createRoute.Stops)
             {
+                number++;
                 route.Stops.Add(
                     new StopInRoute()
                     {
                         Stop = new Stop()
                         {
+                            StopId = ++maxStopId,
                             Adress = stop.Adress,
                             Name = stop.Name,
                             Latitude = stop.Latitude,
                             Longitude = stop.Longitude,
                             TownId = createRoute.TownId,
                             ContactPerson = "Person 1",
-                            ContactPhone = "07012345678"
-                        }
+                            ContactPhone = "07012345678",
+                        },
+                        StopOrder = number
                     });
             }
 
+            _dbContext.Add(route);
 
-            _dbContext.Attach(route);
+
+
             _dbContext.SaveChanges();
 
             return route.RouteId;
