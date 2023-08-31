@@ -163,6 +163,7 @@ namespace AllwinAPI.Controllers
                                        LoadedWeight = js.LoadedWeight,
                                        ContactPerson = js.Stop.ContactPerson,
                                        ContactPhone = js.Stop.ContactPhone,
+                                       StopName = js.Stop.Name
 
                                    }).ToList(),
                     TownName = j.Route.Town.TownName,
