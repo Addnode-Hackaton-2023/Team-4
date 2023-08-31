@@ -9,5 +9,7 @@
         public string DeviationComment { get; set; } = string.Empty;
         public string ContactPerson { get; set; } = String.Empty;
         public string ContactPhone { get; set; } = String.Empty;
+        public int StopOrder { get; set; }
+        public string StopName { get; set; } = String.Empty;
     }
 }

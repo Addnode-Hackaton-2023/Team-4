@@ -1,7 +1,7 @@
 import '../App.css'
 import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from "react";
-import { postDeviation } from '../api';
+import { postCompleteStop } from '../api';
 
 function RegisterDeviation() {
     const [deviation, setDeviation] = React.useState('');
@@ -10,8 +10,7 @@ function RegisterDeviation() {
     const submitDeviation = () =>{
         let d = document.getElementById('deviationId').value;
         setDeviation(d)
-        postDeviation(stopId, deviation)
-        console.log(deviation)
+        postCompleteStop(jobId, stopId, 0, d);
     }
     
     return(
