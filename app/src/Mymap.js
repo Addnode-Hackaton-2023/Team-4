@@ -73,17 +73,16 @@ const addRegisterStopButton = (view) => {
     const newButton = document.createElement('button');
     newButton.textContent = 'Starta';
     newButton.style.width = '70px';
-    newButton.className = 'button is-primary'
-    
+    newButton.className = 'button is-primary';
+
     newButton.addEventListener('click', () => {
-        console.log('in event listener, this: ' + this);
         const options = {
             enableHighAccuracy: true,
             timeout: 5000,
             maximumAge: 0,
         };
         navigator.geolocation.watchPosition(
-            successCallback,
+            (location) => successCallback(view, location),
             errorCallback,
             options
         );
@@ -94,14 +93,14 @@ const addRegisterStopButton = (view) => {
     view.ui.add(newButton, 'bottom-right');
 }
 
-const successCallback = (position) => {
-    /*console.log(position)
+const successCallback = (view, position) => {
+    console.log(position);
     var point = {
         //Create a point
         type: 'point',
         longitude: position.coords.longitude,
         latitude: position.coords.latitude,
-    }
+    };
     const graphic = new Graphic({
         symbol: {
             type: 'simple-marker',
@@ -109,8 +108,8 @@ const successCallback = (position) => {
             size: '15px',
         },
         geometry: point,
-    })
-    this.graphics.add(graphic)*/
+    });
+    view.graphics.add(graphic);
 }
 
 const errorCallback = (error) => {
