@@ -5,12 +5,12 @@ import { postCompleteStop } from '../api';
 
 function RegisterWeight() {
     const [weight, setWeight] = React.useState(0);
-    let {stopId} = useParams();
+    let {stopId, jobId} = useParams();
     
     const submitWeight = () =>{
         let w = document.getElementById('weightId').value;
         setWeight(w);
-        //postCompleteStop(jobId, stopId, w, '');
+        postCompleteStop(jobId, stopId, w, '');
     }
     
     return(

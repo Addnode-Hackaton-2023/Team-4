@@ -6,7 +6,7 @@ import Register from './register/register';
 
 function StopOverview() {
     const [stopDetails, setStopDetails] = useState([]);
-    let {stopId} = useParams();
+    let {stopId, jobId} = useParams();
 
     useEffect(() => {
       getDetailedStopInfo(stopId).then((data) => {

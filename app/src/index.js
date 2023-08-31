@@ -29,7 +29,7 @@ root.render(
                     element={<LocationRoutes location={'3'} />}
                 />
                 <Route path="/mymap" element={<Mymap />} />
-                <Route path="/stop/:stopId" element={<StopOverview />} />
+                <Route path="/stop/:stopId/job/:jobId" element={<StopOverview />} />
                 <Route path="/route/:routeId" element={<Mymap />} />
                 <Route path="/map.html" onEnter={reload} />
             </Routes>

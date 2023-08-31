@@ -5,12 +5,12 @@ import { postCompleteStop } from '../api';
 
 function RegisterDeviation() {
     const [deviation, setDeviation] = React.useState('');
-    let {stopId} = useParams();
+    let {stopId, jobId} = useParams();
     
     const submitDeviation = () =>{
         let d = document.getElementById('deviationId').value;
         setDeviation(d)
-        //postCompleteStop(jobId, stopId, 0, d);
+        postCompleteStop(jobId, stopId, 0, d);
     }
     
     return(

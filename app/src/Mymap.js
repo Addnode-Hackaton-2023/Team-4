@@ -9,8 +9,8 @@ import Graphic from '@arcgis/core/Graphic.js'
 import * as route from '@arcgis/core/rest/route.js'
 import RouteParameters from '@arcgis/core/rest/support/RouteParameters.js'
 import FeatureSet from '@arcgis/core/rest/support/FeatureSet.js'
-import { getRoute } from './api'
-
+import { getRoute, postStartRoute } from './api'
+let jobId;
 const routeUrl =
     'https://route-api.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World'
 
@@ -54,7 +54,7 @@ const createStopGraphics = (view, stopList) => {
     const container = document.createElement('div');
     for (let i = 0; i < stopList.length; i++) {
         let p = document.createElement('a');
-        p.href = "/Stop/" + stopList[i].stopId;
+        p.href = "/Stop/" + stopList[i].stopId + "/job/" + jobId;
         p.innerHTML = stopList[i].name + "</br>";
         container.appendChild(p);
         var point = {
@@ -81,25 +81,31 @@ const createStopGraphics = (view, stopList) => {
     view.ui.add(container, 'top-right');
 }
 
-const addRegisterStopButton = (view) => {
+const addRegisterStopButton = (view, routeId, routeData) => {
     const newButton = document.createElement('button')
     newButton.textContent = 'Starta'
     newButton.style.width = '70px'
     newButton.className = 'button is-primary'
 
     newButton.addEventListener('click', () => {
-        const options = {
-            enableHighAccuracy: true,
-            timeout: 5000,
-            maximumAge: 0,
-        }
-        navigator.geolocation.watchPosition(
-            (location) => successCallback(view, location),
-            errorCallback,
-            options
-        )
-        newButton.style.display = "none"
-    })
+        postStartRoute(routeId).then((res) => {
+            console.log(res.data);
+            jobId = res.data.jobId;
+            createStopGraphics(view, routeData);
+            drawRoute(view);
+            const options = {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0,
+            }
+            navigator.geolocation.watchPosition(
+                (location) => successCallback(view, location),
+                errorCallback,
+                options
+            )
+            newButton.hidden = true
+        })
+    });
 
     view.ui.empty('bottom-right')
     view.ui.add(newButton, 'bottom-right')
@@ -155,10 +161,7 @@ const useCreateMap = (mapRef, routeId) => {
                     minZoom: 8
                 }
             });
-            console.log(view.constraints);
-            createStopGraphics(view, routeData);
-            drawRoute(view);
-            addRegisterStopButton(view);
+            addRegisterStopButton(view, routeId, routeData);
         }
 
         getRoute(routeId).then((data) => {
@@ -175,7 +178,6 @@ function Mymap() {
     let location = useLocation();
 
     React.useEffect(() => {
-        console.log(location);
         if (location.pathname.startsWith("/route/")) {
             document.getElementById("rootOuterContainer").className = "";
         }
