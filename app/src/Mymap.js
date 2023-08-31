@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom';
 import './Mymap.css'
 
+import TileInfo from "@arcgis/core/layers/support/TileInfo.js";
 import Map from '@arcgis/core/Map.js'
 import MapView from '@arcgis/core/views/MapView.js'
 import Graphic from '@arcgis/core/Graphic.js'
@@ -134,7 +135,13 @@ const useCreateMap = (mapRef, routeId) => {
                 map: map,
                 center: [18.06324, 59.334591], //Longitude, latitude
                 zoom: 10,
+                constraints: {
+                    lods: TileInfo.create().lods,
+                    maxZoom: 17,
+                    minZoom: 8
+                }
             });
+            console.log(view.constraints);
             createStopGraphics(view, routeData);
             drawRoute(view);
             addRegisterStopButton(view);
