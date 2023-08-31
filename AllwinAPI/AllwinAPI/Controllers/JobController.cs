@@ -43,8 +43,8 @@ namespace AllwinAPI.Controllers
                     Completed = false, 
                     DeviationComment = string.Empty, 
                     LoadedWeight = 0,
-                    ContactPerson = route.Stops.Where(s => s.StopId == stop.StopId).FirstOrDefault()?.Stop?.ContactPerson,
-                    ContactPhone = route.Stops.Where(s => s.StopId == stop.StopId).FirstOrDefault()?.Stop?.ContactPhone,
+                    ContactPerson = stop.Stop.ContactPerson,
+                    ContactPhone = stop.Stop.ContactPhone,
                     StopId = stop.StopId,
                 });
             });
@@ -68,8 +68,8 @@ namespace AllwinAPI.Controllers
                     StopId = stop.StopId,
                     IsCompleted = false,
                     JobId = stop.JobId,
-                    ContactPerson = stop.ContactPerson,
-                    ContactPhone = stop.ContactPerson
+                    ContactPerson = stop.Stop.ContactPerson,
+                    ContactPhone = stop.Stop.ContactPhone
                 }
             ).ToList();
 
@@ -115,8 +115,9 @@ namespace AllwinAPI.Controllers
                                        IsCompleted = js.Completed,
                                        JobId = js.JobId,
                                        DeviationComment = js.DeviationComment,
-                                       ContactPerson = js.ContactPerson,
-                                       ContactPhone = js.ContactPhone,
+                                       ContactPerson = js.Stop.ContactPerson,
+                                       ContactPhone = js.Stop.ContactPhone,
+                                      
                                    }).ToList(),
                     TownName = j.Route.Town.TownName,
 
