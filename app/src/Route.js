@@ -33,11 +33,11 @@ function Route({ routeId, routeName }) {
     return (
         <div>
             <p>Route - {routeName}:</p>
-            {/* {stopList} */}
-            {ReactDOM.render(
+            {stopList}
+            {/*ReactDOM.render(
                 <Map1 stops={stops} />,
                 document.body.appendChild(document.getElementById('viewDiv'))
-            )}
+            )*/}
         </div>
     )
 }
