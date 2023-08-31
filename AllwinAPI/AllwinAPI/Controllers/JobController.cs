@@ -66,6 +66,7 @@ namespace AllwinAPI.Controllers
                     StopId = stop.StopId,
                     IsCompleted = false,
                     JobId = stop.JobId,
+                    LoadedWeight = 0,
                     ContactPerson = stop.Stop.ContactPerson,
                     ContactPhone = stop.Stop.ContactPhone
                 }
