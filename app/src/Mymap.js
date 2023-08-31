@@ -93,15 +93,20 @@ const addRegisterStopButton = (view) => {
     view.ui.add(newButton, 'bottom-right');
 }
 
+let currentLocation = null;
 const successCallback = (view, position) => {
     console.log(position);
+    if (currentLocation != null) {
+        view.graphics.remove(currentLocation);
+        currentLocation = null;
+    }
     var point = {
         //Create a point
         type: 'point',
         longitude: position.coords.longitude,
         latitude: position.coords.latitude,
     };
-    const graphic = new Graphic({
+    currentLocation = new Graphic({
         symbol: {
             type: 'simple-marker',
             color: 'blue',
@@ -109,7 +114,7 @@ const successCallback = (view, position) => {
         },
         geometry: point,
     });
-    view.graphics.add(graphic);
+    view.graphics.add(currentLocation);
 }
 
 const errorCallback = (error) => {
