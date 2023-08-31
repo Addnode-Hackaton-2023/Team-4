@@ -8,9 +8,9 @@
         public int StopId { get; set; }
         public double? LoadedWeight { get; set; }
         public string? DeviationComment { get; set; }
-        public double? LatestLongitude { get; set; }
-        public double? LatestLatitude { get; set; }
         public bool Completed { get; set; }
+        public string ContactPerson { get; set; } = String.Empty;
+        public string ContactPhone { get; set; } = String.Empty;
         public Stop Stop { get; set; } = new Stop();
         public Job Job { get; set; } = new Job();
 

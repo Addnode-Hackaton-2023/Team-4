@@ -23,6 +23,7 @@ namespace AllwinAPI.Controllers
             var job = new JobDO();
 
             var route = _dbContext.Routes.Where(x => x.RouteId == routeId).FirstOrDefault();
+            
             if (route == null) return null;
 
             var dbJob = new Job()
@@ -41,10 +42,10 @@ namespace AllwinAPI.Controllers
                     StopOrder = stop.StopOrder, 
                     Completed = false, 
                     DeviationComment = string.Empty, 
-                    LatestLongitude = null, 
-                    LoadedWeight = 0, 
-                    LatestLatitude = 0, 
-                    StopId = stop.StopId
+                    LoadedWeight = 0,
+                    ContactPerson = route.Stops.Where(s => s.StopId == stop.StopId).FirstOrDefault()?.Stop?.ContactPerson,
+                    ContactPhone = route.Stops.Where(s => s.StopId == stop.StopId).FirstOrDefault()?.Stop?.ContactPhone,
+                    StopId = stop.StopId,
                 });
             });
             
@@ -59,13 +60,16 @@ namespace AllwinAPI.Controllers
             job.ETA = null;
             job.LatestLatitude = null;
             job.LatestLongitude = null;
-            job.JobStops = dbJob.JobStops.Select(stop =>
-            
+            job.TownName = dbJob.Route.Town.TownName;
+            job.CurrentJobStops = dbJob.JobStops.Select(stop =>
+
                 new JobStopDO()
                 {
                     StopId = stop.StopId,
                     IsCompleted = false,
-                    JobId = stop.JobId
+                    JobId = stop.JobId,
+                    ContactPerson = stop.ContactPerson,
+                    ContactPhone = stop.ContactPerson
                 }
             ).ToList();
 
@@ -104,17 +108,16 @@ namespace AllwinAPI.Controllers
                     LatestLatitude = j.LatestLatitude,
                     LoadedWeight = j.JobStops.Sum(js => js.LoadedWeight.HasValue ? js.LoadedWeight.Value : 0),
                     RouteId = j.RouteId,
-                    Stops = j.JobStops.Select(js =>
-                    new StopCompleteDO()
-                    {
-                        StopId = js.Stop.StopId,
-                        Name = js.Stop.Name,
-                        Adress = js.Stop.Adress,
-                        Latitude = js.Stop.Latitude,
-                        Longitude = js.Stop.Longitude,
-                        ContactPerson = js.Stop.ContactPerson,
-                        ContactPhone = js.Stop.ContactPhone
-                    }).ToList(),
+                    CurrentJobStops = j.JobStops.Select(js =>
+                                   new JobStopDO()
+                                   {
+                                       StopId = js.StopId,
+                                       IsCompleted = js.Completed,
+                                       JobId = js.JobId,
+                                       DeviationComment = js.DeviationComment,
+                                       ContactPerson = js.ContactPerson,
+                                       ContactPhone = js.ContactPhone,
+                                   }).ToList(),
                     TownName = j.Route.Town.TownName,
 
                 }).ToList();
