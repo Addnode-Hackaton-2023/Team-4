@@ -24,22 +24,21 @@ export function getRoutes(townName) {
     return axios.get(baseURL + endpoint);
 }
 
-export function postWeight(stopId, weight){
-    const endpoint = 'Stop/RegisterWeight'
+export function postStartRoute(routeId){
+    const endpoint = `Job/StartJob/route/${routeId}`;
 
-    axios.post(baseURL + endpoint, {
-        "stopId": stopId,
-        "weight": weight},
+    return axios.post(baseURL + endpoint, 
+        {},
         {headers: headers}
     )
-} 
+}
 
-export function postDeviation(stopId, comment){
-    const endpoint = 'Stop/RegisterDeviation'
+export function postCompleteStop(jobId, stopId, weight, comment){
+    const endpoint = `Job/CompleteStop/${jobId}/stop/${stopId}`;
 
-    axios.post(baseURL + endpoint, {
-        "stopId": stopId,
-        "comment": comment},
+    return axios.post(baseURL + endpoint, {
+        "weight": weight,
+        "deviationComment": comment},
         {headers: headers}
     )
-} 
+}

@@ -1,7 +1,7 @@
 import '../App.css'
 import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from "react";
-import { postWeight } from '../api';
+import { postCompleteStop } from '../api';
 
 function RegisterWeight() {
     const [weight, setWeight] = React.useState(0);
@@ -9,9 +9,8 @@ function RegisterWeight() {
     
     const submitWeight = () =>{
         let w = document.getElementById('weightId').value;
-        setWeight(w)
-        postWeight(stopId, w)
-        console.log(weight)
+        setWeight(w);
+        postCompleteStop(jobId, stopId, w, '');
     }
     
     return(
