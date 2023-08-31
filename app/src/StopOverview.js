@@ -16,7 +16,7 @@ function StopOverview() {
 
     return (
         <div>
-            <h3>Stop - {stopDetails.name}</h3>
+            <h3>Stopp - {stopDetails.name}</h3>
             <p>{stopDetails.adress}</p>
             <p>Kontaktperson: {stopDetails.contactPerson} - {stopDetails.contactPhone}</p>
             <Register/>

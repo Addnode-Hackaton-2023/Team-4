@@ -10,13 +10,15 @@ function RegisterDeviation() {
     const submitDeviation = () =>{
         let d = document.getElementById('deviationId').value;
         setDeviation(d)
-        postCompleteStop(jobId, stopId, 0, d);
+        //postCompleteStop(jobId, stopId, 0, d);
     }
     
     return(
-        <div>
-            <input type="text"  id='deviationId'/>
-            <div onClick={submitDeviation}>Registrera</div>
+        <div className='register-weight'>
+            <div className="field">
+                <input className="input" type="text"  id='deviationId'/>
+            </div>
+            <div className='button is-link' onClick={submitDeviation}>Registrera</div>
         </div>
     )
 }

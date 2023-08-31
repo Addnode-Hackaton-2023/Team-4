@@ -1,4 +1,5 @@
 import '../App.css'
+import './register.css'
 import React, { useEffect, useState } from "react";
 import RegisterWeight from './registerWeight';
 import RegisterDeviation from './registerDeviation';
@@ -9,8 +10,8 @@ function Register() {
     if(register===null){
         return(
             <div>
-                <div onClick={() => {setRegister(true)}}>Registrera vikt</div>
-                <div onClick={() => {setRegister(false)}}>Registrera avvikelse</div>
+                <div className='register-weight button is-link' onClick={() => {setRegister(true)}}>Registrera vikt</div><br/>
+                <div className='button is-link' onClick={() => {setRegister(false)}}>Registrera avvikelse</div>
             </div>)
     }else if(register){
         return(<RegisterWeight/>)

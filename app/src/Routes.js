@@ -20,7 +20,7 @@ function Routes({ location }) {
 
     let routeList;
     if (routes.length > 0) {
-        routeList = <div><h5 className="subtitle is-5">Choose route:</h5>
+        routeList = <div><h5 className="subtitle is-5">Välj rutt:</h5>
         <ul>
             {routes.map((route) => (
                 <Route routeName={route.routeName} routeId={route.routeId} />
@@ -28,7 +28,7 @@ function Routes({ location }) {
         </ul>
         </div>;
     } else {
-        routeList = <p>No routes available</p>;
+        routeList = <p>Inga rutter är tillgängliga</p>;
     }
 
     return (
