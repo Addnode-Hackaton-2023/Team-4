@@ -85,6 +85,7 @@ const addRegisterStopButton = (view) => {
     const newButton = document.createElement('button')
     newButton.textContent = 'Starta'
     newButton.style.width = '70px'
+    newButton.style.marginBottom = '50px'
     newButton.className = 'button is-primary'
 
     newButton.addEventListener('click', () => {
