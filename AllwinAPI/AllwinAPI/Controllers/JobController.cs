@@ -32,7 +32,7 @@ namespace AllwinAPI.Controllers
             {
                 JobId = maxJobId + 1,
                 RouteId = routeId,
-                ETA = DateTime.Now.AddHours(2),
+                ETA = DateTime.Now.AddMinutes(route.Stops.Count() * 15).AddHours(2),
                 LatestLatitude = null,
                 LatestLongitude = null,
                 Route = route,
@@ -98,7 +98,7 @@ namespace AllwinAPI.Controllers
 
             job.LatestLatitude = stop.Latitude;
             job.LatestLongitude = stop.Longitude;
-            job.ETA = DateTime.Now.AddMinutes(job.JobStops.Count(js => !js.Completed) * 15);
+            job.ETA = DateTime.Now.AddMinutes(job.JobStops.Count(js => !js.Completed) * 15).AddHours(2);
 
             if (stopEvent.Weight > 0)
             {
