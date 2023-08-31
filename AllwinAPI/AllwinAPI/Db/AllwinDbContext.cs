@@ -45,6 +45,8 @@ namespace AllwinAPI.Db
                 entity.HasKey(e => e.StopId);
                 entity.ToTable("Stop");
                 entity.HasOne(s => s.Town).WithMany(t => t.Stops);
+                entity.Property("Latitude").HasColumnType("float");
+                entity.Property("Longitude").HasColumnType("float");
             });
             modelBuilder.Entity<StopInRoute>(entity =>
             {
