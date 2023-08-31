@@ -12,27 +12,9 @@ function Route({ routeId, routeName }) {
             setStops(data?.data)
         })
     }, [routeId])
-
-    let stopList
-    if (stops.length > 0) {
-        stopList = (
-            <ul>
-                {stops.map((stop) => (
-                    <li>
-                        <Link to={`/stop/${stop.stopId}`}>
-                            {stop.name} - {stop.adress}
-                        </Link>
-                    </li>
-                ))}
-            </ul>
-        )
-    } else {
-        stopList = <p>No stops available</p>
-    }
     return (
         <div>
-            <p><Link to={`/route/${routeId}`}>Route - {routeName}:</Link></p>
-            {stopList}
+            <p><Link to={`/route/${routeId}`}>Route - {routeName}:</Link></p>          
         </div>
     )
 }
