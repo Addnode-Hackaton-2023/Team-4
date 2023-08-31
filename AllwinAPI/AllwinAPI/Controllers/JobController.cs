@@ -39,7 +39,7 @@ namespace AllwinAPI.Controllers
             };
 
             var jobStops = new List<JobStop>();
-            var jobStopNumber = 0;
+            var jobStopNumber = _dbContext.JobStops.Any() ? _dbContext.JobStops.Max(r => r.JobStopId) : 0;
             route.Stops.ForEach(stop =>
                 {
                     var stopdefintion = _dbContext.Stops.Where(s => s.StopId == stop.StopId).Single();
