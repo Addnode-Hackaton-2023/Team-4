@@ -10,6 +10,6 @@
         public double? LatestLatitude { get; set; }
         public double? LatestLongitude { get; set; }
         public double LoadedWeight { get; set; }
-        public List<StopCompleteDO> Stops { get; set; } = new List<StopCompleteDO>();
+        public List<JobStopDO> CurrentJobStops { get; set; } = new List<JobStopDO>();
     }
 }
