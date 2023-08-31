@@ -98,7 +98,7 @@ const addRegisterStopButton = (view) => {
             errorCallback,
             options
         )
-        newButton.hidden = true
+        newButton.style.display = "none"
     })
 
     view.ui.empty('bottom-right')
@@ -127,6 +127,9 @@ const successCallback = (view, position) => {
         geometry: point,
     })
     view.graphics.add(currentLocation)
+    view.goTo(currentLocation).then(function () {
+        view.zoom = 14;
+    });
 }
 
 const errorCallback = (error) => {
