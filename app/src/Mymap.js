@@ -24,7 +24,7 @@ function drawRoute(view) {
 
     route
         .solve(routeUrl, routeParams)
-        .then(function (data) {
+        .then(function (data) {           
             data.routeResults.forEach(function (result) {
                 result.route.symbol = {
                     type: 'simple-line',
@@ -50,7 +50,12 @@ const getColor = (i, x) => {
 }
 
 const createStopGraphics = (view, stopList) => {
+    const container = document.createElement('div');
     for (let i = 0; i < stopList.length; i++) {
+        let p = document.createElement('a');
+        p.href = "/Stop/" + stopList[i].stopId;
+        p.innerHTML = stopList[i].name + "</br>";
+        container.appendChild(p);
         var point = {
             //Create a point
             type: 'point',
@@ -67,6 +72,8 @@ const createStopGraphics = (view, stopList) => {
         })
         view.graphics.add(graphic)
     }
+    view.ui.empty('top-right');
+    view.ui.add(container, 'top-right');
 }
 
 const addRegisterStopButton = (view) => {
