@@ -43,8 +43,6 @@ namespace AllwinAPI.Controllers
                     Completed = false, 
                     DeviationComment = string.Empty, 
                     LoadedWeight = 0,
-                    ContactPerson = stop.Stop.ContactPerson,
-                    ContactPhone = stop.Stop.ContactPhone,
                     StopId = stop.StopId,
                 });
             });
@@ -120,6 +118,7 @@ namespace AllwinAPI.Controllers
                                    IsCompleted = js.Completed,
                                    JobId = js.JobId,
                                    DeviationComment = js.DeviationComment,
+                                   LoadedWeight = js.LoadedWeight,
                                    ContactPerson = js.Stop.ContactPerson,
                                    ContactPhone = js.Stop.ContactPhone,
 
@@ -152,6 +151,7 @@ namespace AllwinAPI.Controllers
                                        IsCompleted = js.Completed,
                                        JobId = js.JobId,
                                        DeviationComment = js.DeviationComment,
+                                       LoadedWeight = js.LoadedWeight,
                                        ContactPerson = js.Stop.ContactPerson,
                                        ContactPhone = js.Stop.ContactPhone,
                                       
