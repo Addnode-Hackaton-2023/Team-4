@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from 'react-router-dom';
 import './App.css'
 import Route from './Route'
 import { getRoutes } from './api'
 
 function Routes({ location }) {
     const [routes, setRoutes] = useState([]);
+    let routerLocation = useLocation();
+    
+    React.useEffect(() => {
+        document.getElementById("rootOuterContainer").className = "App";
+      }, [routerLocation]);
     
     useEffect(() => {
       getRoutes(location).then((data) => {
@@ -14,7 +20,7 @@ function Routes({ location }) {
 
     let routeList;
     if (routes.length > 0) {
-        routeList = <div><p>Choose route:</p>
+        routeList = <div><h5 className="subtitle is-5">Choose route:</h5>
         <ul>
             {routes.map((route) => (
                 <Route routeName={route.routeName} routeId={route.routeId} />
@@ -26,10 +32,8 @@ function Routes({ location }) {
     }
 
     return (
-        <div className="App">
-            <header className="App-header">
-                {routeList}
-            </header>
+        <div>
+            {routeList}
         </div>
     )
 }

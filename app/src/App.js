@@ -1,16 +1,16 @@
+import React from 'react'
 import { Link } from 'react-router-dom'
 import './App.css'
+import logo from './Logo.png'
 
 function App() {
-    const reload = () => window.location.reload()
     return (
-        <div className="App">
-            <header className="App-header">
-                <p>Holy Driver - Choose location:</p>
-                <Link to="/stockholm">Stockholm</Link>
-                <Link to="/malmo">Malmö</Link>
-                <Link to="/goteborg">Göteborg</Link>
-            </header>
+        <div>
+            <img className="logo" src={logo} />
+            <h5 className="subtitle is-5">Choose your city</h5>
+            <Link to="/stockholm" className="button is-link">Stockholm</Link><br/>
+            <Link to="/malmo" className="button is-link">Malmö</Link><br/>
+            <Link to="/goteborg" className="button is-link">Göteborg</Link><br/>
         </div>
     )
 }
