@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+        <link rel="stylesheet" href="%PUBLIC_URL%/main.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#000000" />
@@ -29,7 +30,13 @@
     </head>
     <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>
-        <div id="root"></div>
+        <div id="rootOuterContainer" class="App">
+          <div class="outer-container">
+              <div class="inner-container">
+                <div id="root"></div>
+              </div>
+          </div>
+        </div>
         <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

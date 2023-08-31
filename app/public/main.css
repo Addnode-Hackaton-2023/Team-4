@@ -1,0 +1,28 @@
+.App {
+    background-color: #39085a; /* Background color for the whole page */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .App .inner-container {
+    text-align: center;
+  }
+  
+  @media only screen and (min-width: 769px)  {
+    .App .outer-container {
+        background-color: #1b0729; /* Dark background color */
+        display: inline-block;
+        border-radius: 8px;
+        padding: 20px;
+    }
+  
+    .App .inner-container {
+        background-color: #55018d;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  }

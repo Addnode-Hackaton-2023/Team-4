@@ -1,14 +1,12 @@
-body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-        'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-        'Helvetica Neue', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+.logo {
+    width: 23rem;
 }
 
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-        monospace;
+.inner-container, .inner-container h5 {
+  color: white;
 }
 
+.inner-container a {
+  min-width: 200px;
+  margin-bottom: 10px;
+}

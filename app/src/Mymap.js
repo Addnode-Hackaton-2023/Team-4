@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom';
 import './Mymap.css'
 
 import TileInfo from "@arcgis/core/layers/support/TileInfo.js";
@@ -25,7 +25,7 @@ function drawRoute(view) {
 
     route
         .solve(routeUrl, routeParams)
-        .then(function (data) {
+        .then(function (data) {           
             data.routeResults.forEach(function (result) {
                 result.route.symbol = {
                     type: 'simple-line',
@@ -51,7 +51,12 @@ const getColor = (i, x) => {
 }
 
 const createStopGraphics = (view, stopList) => {
+    const container = document.createElement('div');
     for (let i = 0; i < stopList.length; i++) {
+        let p = document.createElement('a');
+        p.href = "/Stop/" + stopList[i].stopId;
+        p.innerHTML = stopList[i].name + "</br>";
+        container.appendChild(p);
         var point = {
             //Create a point
             type: 'point',
@@ -72,6 +77,8 @@ const createStopGraphics = (view, stopList) => {
         })
         view.graphics.add(graphic)
     }
+    view.ui.empty('top-right');
+    view.ui.add(container, 'top-right');
 }
 
 const addRegisterStopButton = (view) => {
@@ -161,9 +168,18 @@ const useCreateMap = (mapRef, routeId) => {
 }
 
 function Mymap() {
-    let { routeId } = useParams()
-    const elementRef = useRef(null)
-    useCreateMap(elementRef, routeId)
+    let {routeId} = useParams();
+    let location = useLocation();
+
+    React.useEffect(() => {
+        console.log(location);
+        if (location.pathname.startsWith("/route/")) {
+            document.getElementById("rootOuterContainer").className = "";
+        }
+      }, [location]);
+
+    const elementRef = useRef(null);
+    useCreateMap(elementRef, routeId);
 
     return <div className="map-view" ref={elementRef}></div>
 }
