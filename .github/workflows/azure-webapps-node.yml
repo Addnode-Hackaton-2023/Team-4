@@ -17,10 +17,11 @@
 # For more information on the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # For more samples to get started with GitHub Action workflows to deploy to Azure: https://github.com/Azure/actions-workflow-samples
 
-on:
-  push:
-    branches: [ "main" ]
-  workflow_dispatch:
+on: workflow_dispatch
+#on:
+#  push:
+#    branches:
+#    - main
 
 env:
   AZURE_WEBAPP_NAME: allwin20230831   # set this to your application's name
